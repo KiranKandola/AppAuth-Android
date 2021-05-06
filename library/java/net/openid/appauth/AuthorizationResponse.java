@@ -217,12 +217,12 @@ public class AuthorizationResponse extends AuthorizationManagementResponse {
          */
         @NonNull
         public Builder fromUri(@NonNull Uri uri) {
-            return fromUri(uri, SystemClock.INSTANCE);
+            return fromUri(new UriParser(uri), SystemClock.INSTANCE);
         }
 
         @NonNull
         @VisibleForTesting
-        Builder fromUri(@NonNull Uri uri, @NonNull Clock clock) {
+        Builder fromUri(@NonNull UriParser uri, @NonNull Clock clock) {
             setState(uri.getQueryParameter(KEY_STATE));
             setTokenType(uri.getQueryParameter(KEY_TOKEN_TYPE));
             setAuthorizationCode(uri.getQueryParameter(KEY_AUTHORIZATION_CODE));
